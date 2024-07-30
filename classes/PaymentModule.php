@@ -1276,8 +1276,8 @@ abstract class PaymentModuleCore extends Module
 
     protected function isCarrierValid($package_list): bool
     {
-        foreach ($package_list as $package) {
-            foreach ($package as $package) {
+        foreach ($package_list as $packageByAddress) {
+            foreach ($packageByAddress as $package) {
                 $carrier = new Carrier((int) $package['id_carrier']);
 
                 if (empty(Db::getInstance()->executeS('SELECT `id_module` FROM `' . _DB_PREFIX_ . 'module_carrier` WHERE `id_reference` = ' . (int) $carrier->id_reference . ' AND `id_shop` = ' . (int) $this->context->shop->id . ' AND `id_module` = ' . (int) $this->id))) {
